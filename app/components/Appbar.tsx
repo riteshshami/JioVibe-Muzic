@@ -9,13 +9,26 @@ import { Music } from "lucide-react"
 export function Appbar() {
     const session = useSession();
 
-    return <div className="flex justify-between px-20 pt-4">
-        <div className="text-lg font-bold flex flex-col justify-center text-white">
-            Muzer
-        </div>
-        <div>
-            {session.data?.user && <Button className="bg-purple-600 text-white hover:bg-purple-700" onClick={() => signOut()}>Logout</Button>}
-            {!session.data?.user &&<Button className="bg-purple-600 text-white hover:bg-purple-700" onClick={() => signIn()}>Signin</Button>}
-        </div>
+    return     <div className="bg-slate-600 text-primary-foreground text-white">
+    <div className="container mx-auto flex justify-between items-center py-4">
+      <div className="text-2xl font-bold">JioVibe</div>
+      <div>
+        {session.data?.user ? (
+          <Button
+            variant="default"
+            onClick={() => signOut()}
+          >
+            Logout
+          </Button>
+        ) : (
+          <Button
+            variant="default"
+            onClick={() => signIn()}
+          >
+            Sign In
+          </Button>
+        )}
+      </div>
     </div>
+  </div>
 }
