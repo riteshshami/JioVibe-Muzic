@@ -13,7 +13,6 @@ import LiteYouTubeEmbed from "react-lite-youtube-embed";
 import { YT_REGEX } from "../lib/utils";
 //@ts-ignore
 import YouTubePlayer from "youtube-player";
-import Image from "next/image"
 
 interface Video {
   id: string
@@ -192,7 +191,7 @@ export default function StreamView({
               queue.map((video) => (
                 <Card key={video.id} className="bg-gray-900">
                   <CardContent className="p-4 flex items-center space-x-4">
-                    <Image
+                    <img
                       src={video.smallImg}
                       alt={`Thumbnail for ${video.title}`}
                       className="w-24 h-16 object-cover rounded"
@@ -223,7 +222,7 @@ export default function StreamView({
           <div className="md:col-span-2 space-y-6">
             <div className="flex justify-between items-center">
               <h2 className="text-2xl font-bold">Add a song</h2>
-              <Button onClick={handleShare} variant="outline">
+              <Button onClick={handleShare} variant="default">
                 <Share2 className="mr-2 h-4 w-4" /> Share
               </Button>
             </div>
@@ -255,12 +254,12 @@ export default function StreamView({
                         <div ref={videoPlayerRef} className="w-full aspect-video" />
                       ) : (
                         <>
-                          <Image
+                          <img
                             src={currentVideo.bigImg}
                             alt={currentVideo.title}
                             className="w-full aspect-video object-cover rounded"
                           />
-                          <p className="mt-2 text-center font-semibold">{currentVideo.title}</p>
+                          <p className="mt-2 text-center font-semibold text-white">{currentVideo.title}</p>
                         </>
                       )}
                     </div>
