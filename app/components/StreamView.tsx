@@ -91,11 +91,9 @@ export default function StreamView({
   }, [currentVideo])
 
   const handleSubmit = async (e: React.FormEvent) => {
-  e.preventDefault();
-  setLoading(true);
-
-  try {
-    const res = await fetch("/api/streams", {
+    e.preventDefault()
+    setLoading(true)
+    const res = await fetch("/api/streams/", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -104,21 +102,11 @@ export default function StreamView({
         creatorId,
         url: inputLink,
       }),
-    });
-
-    if (!res.ok) {
-      throw new Error(`Error: ${res.status} - ${res.statusText}`);
-    }
-
-    const data = await res.json();
-    setQueue((prevQueue) => [...prevQueue, data]);
-    setInputLink("");
-  } catch (error) {
-    console.error("Failed to submit stream:", error);
-  } finally {
-    setLoading(false);
+    })
+    setQueue([...queue, await res.json()])
+    setLoading(false)
+    setInputLink("")
   }
-};
 
   const handleVote = (id: string, isUpvote: boolean) => {
     setQueue(
