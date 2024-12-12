@@ -94,18 +94,16 @@ export default function StreamView({
   e.preventDefault();
   setLoading(true);
 
-  const body = JSON.stringify({
-    creatorId,
-    url: inputLink,
-  });
-
   try {
     const res = await fetch("/api/streams", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-      body,
+      body: JSON.stringify({
+        creatorId,
+        url: inputLink,
+      }),
     });
 
     if (!res.ok) {
