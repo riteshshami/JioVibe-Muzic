@@ -47,6 +47,9 @@ export default function StreamView({
   async function refreshStreams() {
     const res = await fetch(`/api/streams/?creatorId=${creatorId}`, {
       credentials: "include",
+      headers: {
+        "Content-Type": "application/json",
+      }
     })
     const json = await res.json()
     if (json.streams && Array.isArray(json.streams)) {
